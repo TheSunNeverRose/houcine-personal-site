@@ -71,3 +71,13 @@ html{background:var(--bg);background-image:radial-gradient(ellipse at 82% 0%,rgb
 @media(max-width:52rem){.hero-grid{grid-template-columns:1fr;gap:2.5rem}.hero-note{max-width:34rem;min-height:15rem}.hero-note .note-mark{margin-top:1.2rem}.hero-note .note-quote{max-width:27ch}.hero-foot{margin-top:3rem}.focus-sec{grid-template-columns:1fr;gap:1.8rem}.focus-sec .section-intro{display:grid;grid-template-columns:1fr 1fr;align-items:end}.focus-sec .section-intro .label{grid-column:1/-1}.focus-sec .section-intro h2{margin:0}.focus-sec .section-desc{margin:0 0 .2rem auto}}
 @media(max-width:44rem){.hero{padding-top:3.5rem}.hero h1{font-size:clamp(2.5rem,12vw,3.7rem)}.hero .lede{font-size:1rem}.hero-foot{font-size:.58rem}.section-intro{display:block}.section-intro h2{margin-top:.6rem}.section-desc{margin:.8rem 0 0}.idx li{grid-template-columns:1fr;gap:.4rem}.interest-name{gap:.7rem}.interest-name>span:last-child{font-size:1.15rem}.row a{grid-template-columns:1fr;gap:.25rem}.row h3{font-size:1.4rem}.focus-sec .section-intro{display:block}.focus-sec .section-intro h2{margin-bottom:.8rem}.focus-item{grid-template-columns:1fr;gap:.35rem}.note-bottom{font-size:.53rem}.hero .cta{gap:1rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Tables used for source-backed case studies */
+.prose .table-wrap{max-width:100%;overflow-x:auto;margin:1.5rem 0;border:1px solid var(--ln);border-radius:10px}
+.prose table{width:100%;border-collapse:collapse;font-size:.88rem;line-height:1.55;background:var(--s1)}
+.prose th,.prose td{padding:.72rem .78rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--ln);min-width:8rem}
+.prose th{color:var(--al);font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;font-weight:500;text-transform:uppercase;background:var(--s2)}
+.prose td{color:#d1ccc4}
+.prose tr:last-child td{border-bottom:0}
+.prose .table-wrap:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+@media(max-width:640px){.prose table{font-size:.82rem}.prose th,.prose td{padding:.6rem;min-width:7.5rem}}

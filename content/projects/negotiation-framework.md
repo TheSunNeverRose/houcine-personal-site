@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Notes for Preparing for a Negotiation
 description: A short checklist to use before a difficult conversation.
 date: 2026-09-20

@@ -1,38 +1,21 @@
 ---
-title: What I Want to Understand About International Business
-description: I'm interested in working across borders, but I want to know what the work actually involves.
-date: 2026-09-10
+title: International Business Got More Concrete When I Picked a Product
+description: What a small desk-research exercise on Tunisian olive oil and Singapore taught me about market-entry questions.
+date: 2026-10-16
 category: International business
-tags: [international-business, learning, strategy]
+tags: [international-business, market-entry, Tunisia, Singapore]
+featured: true
 ---
-The idea of international business appeals to me: different markets, languages, and the possibility of working outside one country. But the name covers so many jobs that it doesn't tell me what I'd actually be doing each day, or how someone gets their first opportunity.
+I used to think of international business as a broad thing: companies in different countries, distributors, prices, rules, and people trying to sell across borders. That list is true, but it is so broad that it is hard to learn much from it.
 
-I'd like to understand the work before choosing a degree just because the title sounds promising.
+For a small exercise, I worked with a specific product-market pair: Tunisian olive oil and Singapore. I used an AI assistant to help me find public data and organise the questions. I wanted to see what could be learned before talking to an importer or pretending to make a business recommendation.
 
-## What changes when a company enters another market?
+The first useful number was not a margin or a forecast. Singapore imported about 2.80 million kilograms of olive oil in 2024, worth US$25.50 million, according to [WITS' UN Comtrade data](https://wits.worldbank.org/trade/comtrade/en/country/SGP/year/2024/tradeflow/Imports/partner/ALL/product/1509). Spain supplied about 1.70 million kilograms and Italy about 885,000. Tunisia's recorded quantity was only 130 kilograms.
 
-It might need to find local customers, compare competitors, choose a distributor, deal with regulations, set prices, or build relationships with people who work differently. These are practical problems, and each one calls for different skills.
+That changed the question I was asking. A large market does not automatically make an opening for every exporter. Those figures tell me the category already has suppliers with strong positions; they do not tell me whether a retailer would give a Tunisian brand shelf space, what a bottle would cost after shipping, or whether customers would pay enough to support the business.
 
-That is why I'd look carefully at the courses in a programme. I'd want a grounding in accounting, finance, marketing, operations, and data, not only broad classes about global markets.
+The import rules made the gap between an interesting idea and a real plan even clearer. The [Singapore Food Agency's guidance](https://www.sfa.gov.sg/food-import-export/commercial-imports/what-you-need-to-know-for-import-of-food) says that importing processed food for commercial sale involves registration and the relevant permits. Someone would need to confirm the exact paperwork for the proposed product, not just put "export to Singapore" in a spreadsheet.
 
-## English helps, but what else can I offer?
+This was desk research, with AI help, not field research. I haven't contacted buyers or exporters and I don't have a shipping quote. But I now have better questions than "Is Singapore a good market?" I would want to know which olive-oil segment a Tunisian producer could credibly serve, how store prices compare by size and origin, what an importer would require, and what the landed cost looks like using actual quotes.
 
-Being comfortable with English makes it easier to study and communicate with people in other countries. On its own, though, it probably isn't enough to make someone valuable to an employer. A useful skill might be understanding customers, handling a process, analysing costs, selling, or managing a project.
-
-I want to pair communication with something practical that I can demonstrate.
-
-## Things I still want to find out
-
-- How does a company decide whether a new market is worth the risk?
-- How does it find a reliable local partner or distributor?
-- Which costs tend to get missed in an expansion plan?
-- What entry-level jobs give someone a close look at customers and revenue?
-- Which skills are useful in different countries, and which depend on local knowledge?
-
-I don't have clear answers to all of these yet. They're questions I can research instead of assuming that an international career will automatically be interesting or easy.
-
-## A project that might help
-
-One useful exercise would be to choose a real company and a market it is considering, then look at customers, competition, costs, and local rules. I'd need to separate facts from estimates and explain what would change my view.
-
-It could also help me compare study options. I'd rather judge a programme by what it teaches me to do than by how impressive its name sounds.
+I am starting to understand international business as the work of narrowing a broad opportunity into a specific decision with costs, rules, competitors and evidence. The full case, including the data table and source links, is in [the market-entry study](/projects/market-entry-hypothetical-product/).

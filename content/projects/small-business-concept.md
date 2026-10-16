@@ -1,4 +1,5 @@
 ---
+draft: true
 title: A Small Service Idea, on Paper
 description: A hypothetical service concept I can use to practise the basic maths of a business.
 date: 2026-10-05

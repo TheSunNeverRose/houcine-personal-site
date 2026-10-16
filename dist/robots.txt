@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://houcine-notes.hssinmbarek6.workers.dev/sitemap.xml

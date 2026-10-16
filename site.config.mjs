@@ -3,7 +3,7 @@ export default {
   name: 'Houcine',
   title: 'Houcine | Notes & Experiments',
   tagline: "Notes on business, philosophy, technology, and what I'm learning.",
-  url: '', // Add the production URL when a domain or hosting address is chosen.
+  url: 'https://houcine-notes.hssinmbarek6.workers.dev', // Canonical public URL for sitemap and metadata.
   base: '',
   lang: 'en',
   email: '', // Add a public contact email only if you want it displayed.
@@ -22,8 +22,8 @@ export default {
   ],
   focus: [
     { label: 'Study', text: "I'm comparing English, business management, and international management before deciding what to pursue." },
-    { label: 'Research', text: 'My AI-assisted research agent examines arguments about ultimate reality. It is still experimental.' },
-    { label: 'Practice', text: "I'm trying to write more clearly and finish small pieces of work I can show." },
+    { label: 'Research', text: 'I am checking how my research agent handles sources, confidence and model fallbacks.' },
+    { label: 'Market study', text: 'I used trade data and Singapore import guidance to examine a possible route for Tunisian olive oil.' },
   ],
   closing: "I don't have a neat plan yet. I'm trying to learn useful skills, finish projects, and keep track of what changes my mind.",
   footerLine: 'More notes as I go.',

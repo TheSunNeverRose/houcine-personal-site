@@ -1,4 +1,5 @@
 ---
+draft: true
 title: How I'd Decide Whether a Business Idea Is Worth It
 description: A few questions I'd ask before putting time or money into an idea.
 date: 2026-10-01

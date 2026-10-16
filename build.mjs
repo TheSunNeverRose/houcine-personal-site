@@ -11,8 +11,17 @@ const inline = s => esc(s)
   .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => `<a href="${safe(u)}"${/^https?:/.test(u) ? ' rel="noopener noreferrer" target="_blank"' : ''}>${t}</a>`);
 function md(src) { // small, safe Markdown: raw HTML is always escaped
   const L = src.replace(/\r/g, '').split('\n'), LI = /^([-*]|\d+\.) /; let o = '', i = 0;
+  const splitTableRow = s => s.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim());
+  const isTableDivider = s => /^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(s);
   while (i < L.length) { const l = L[i];
     if (/^```/.test(l)) { const c = []; i++; while (i < L.length && !/^```/.test(L[i])) c.push(L[i++]); i++; o += `<pre><code>${esc(c.join('\n'))}</code></pre>`; }
+    else if (i + 1 < L.length && l.includes('|') && isTableDivider(L[i + 1])) {
+      const headers = splitTableRow(L[i++]); i++; const rows = [];
+      while (i < L.length && L[i].trim() && L[i].includes('|')) rows.push(splitTableRow(L[i++]));
+      const th = headers.map(c => `<th scope="col">${inline(c)}</th>`).join('');
+      const tb = rows.map(row => `<tr>${headers.map((_, n) => `<td>${inline(row[n] || '')}</td>`).join('')}</tr>`).join('');
+      o += `<div class="table-wrap" role="region" tabindex="0" aria-label="Scrollable data table"><table><thead><tr>${th}</tr></thead><tbody>${tb}</tbody></table></div>`;
+    }
     else if (/^#{2,3} /.test(l)) { const n = l.match(/^#+/)[0].length; o += `<h${n}>${inline(l.slice(n + 1))}</h${n}>`; i++; }
     else if (/^> /.test(l)) { const c = []; while (i < L.length && /^> /.test(L[i])) c.push(L[i++].slice(2)); o += `<blockquote><p>${inline(c.join(' '))}</p></blockquote>`; }
     else if (LI.test(l)) { const t = /^\d/.test(l) ? 'ol' : 'ul', c = []; while (i < L.length && LI.test(L[i])) c.push(`<li>${inline(L[i++].replace(LI, ''))}</li>`); o += `<${t}>${c.join('')}</${t}>`; }
@@ -74,7 +83,7 @@ function build() {
   put('index.html', home(A, P));
   put('writing/index.html', indexPage('writing', 'Writing', 'Things I have been thinking about', 'Ideas, questions, and notes as they develop.', A, x => row(x, `${x.mins} min read`)));
   A.forEach((x, i) => put(`writing/${x.slug}/index.html`, detail(x, A, ['/writing/', 'writing'], `<p class="meta"><span class="mono">${date(x.date)}</span>${x.updated ? `<i></i>Updated ${date(x.updated)}` : ''}<i></i>${x.mins} min read</p>`, pnav(A[i + 1], A[i - 1]))));
-  put('projects/index.html', indexPage('projects', 'Projects', 'Things I have tried or want to test', 'Some are underway; others are still ideas.', P, x => row(x, STAT[x.status])));
+  put('projects/index.html', indexPage('projects', 'Projects', 'Projects and research exercises', 'A working research agent and a sourced market-entry desk study. Each page separates what I have built or checked from what remains unanswered.', P, x => row(x, STAT[x.status])));
   P.forEach(x => put(`projects/${x.slug}/index.html`, detail(x, P, ['/projects/', 'projects'], facts(x))));
   const a = cfg.about, L = links();
   put('about/index.html', layout({ title: 'About', desc: a.intro[0], path: '/about/', body: `<div class="in sec first"><article class="read"><p class="label">About</p><h1>A little about me</h1><div class="prose">${a.intro.map(p => `<p>${esc(p)}</p>`).join('')}<h2>What I'm focused on</h2><p>${esc(a.stage)}</p><h2>Questions on my mind</h2><ul>${li(a.questions)}</ul><h2>What I'm learning</h2><ul>${li(a.learning)}</ul><h2>Where I'd like to go</h2><p>${esc(a.direction)}</p><h2>Contact</h2><p>${L.length ? L.join(', ') : 'Contact details will appear here once they are added.'}</p><p><a href="${H('/writing/')}">Read the writing</a> or <a href="${H('/projects/')}">see the projects</a>.</p></div></article></div>` }));

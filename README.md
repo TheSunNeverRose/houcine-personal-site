@@ -1,8 +1,8 @@
-# Houcine — Notes & Experiments
+# Houcine | Notes & Experiments
 
-A lightweight, dependency-free personal website built around four things: a personal homepage, writing and ideas, projects and experiments, and an About page. It uses a dark editorial design, responsive layouts, Markdown content, category filters, and client-side search.
+A lightweight, dependency-free personal website with a dark editorial design, responsive layouts, Markdown writing and project pages, category filters, and client-side search. The public projects focus on the Ultimate Reality Researcher codebase and a sourced desk-research exercise on Tunisian olive oil in Singapore.
 
-The site is deliberately honest about the difference between interests, hypotheses, experiments, and completed work. The Ultimate Reality Researcher entry links to the existing project repository; the business and negotiation entries are presented as exploratory frameworks rather than pretending that market validation or real-world trials have happened.
+The site separates what is documented from what remains unknown. The market-entry page cites public trade and regulatory sources; it does not claim buyer interviews, field research, or a validated business opportunity. The research-agent page records an implementation issue found during source inspection rather than presenting the project as more reliable than it is. Older negotiation and generic business-concept drafts are kept unpublished to avoid listing checklists as finished projects.
 
 ## Requirements
 
@@ -62,7 +62,7 @@ Your article in Markdown.
 Write your thoughts here. Add links and a list when useful.
 ```
 
-The filename becomes the URL slug. Use lowercase letters, numbers, and hyphens. Supported Markdown includes paragraphs, `##`/`###` headings, lists, blockquotes, links, images, inline emphasis, and fenced code blocks. Keep research sources and important qualifications in the article itself.
+The filename becomes the URL slug. Use lowercase letters, numbers, and hyphens. Supported Markdown includes paragraphs, `##`/`###` headings, lists, blockquotes, tables, links, images, inline emphasis, and fenced code blocks. Keep research sources and important qualifications in the article itself.
 
 Add `draft: true` to keep a draft out of the public site, search index, and sitemap. Remove that flag when it is ready to publish.
 
