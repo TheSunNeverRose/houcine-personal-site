@@ -1,53 +1,49 @@
 ---
-title: A market-entry study, from question to evidence
-description: A reusable framework for evaluating whether a product could find customers in a new market.
+title: How I'd Research a New Market
+description: A checklist for thinking through whether a product could sell in another market.
 date: 2026-09-15
 category: Market research
 status: exploring
 tags: [strategy, entrepreneurship, research]
 ---
-## The question
+## A question to work through
 
 What would I need to know before recommending that a small company sell an everyday product in a new market?
 
-This is a research exercise and framework, not a completed market study. No customer interviews or market validation are claimed here.
+I haven't chosen a specific product or country for this exercise, so it isn't a market recommendation. It's a list of things I'd need to check before making one.
 
-## Why it matters
+## Where I'd start
 
-A product can be useful and still fail commercially. Customers may already have an acceptable alternative, distribution may be expensive, the price may be wrong, or the company may lack the relationships needed to reach buyers. A market-entry recommendation should test these issues rather than rely on the size of a population or a broad impression of demand.
+### Who would buy it?
 
-## A first-pass framework
+I'd narrow the customer group and the situation where the product would be useful. Treating a whole country as one market is too broad to tell me much.
 
-### 1. Define the customer
+### What do people use now?
 
-Describe a specific group and the situation in which the product would be useful. Avoid treating an entire country as one customer segment.
+I'd look at existing products, prices, and why a customer might switch. Finding few obvious competitors isn't necessarily good news; it might mean I haven't understood the demand.
 
-### 2. Understand current alternatives
+### How would the product reach customers?
 
-Identify what people use now, how much it costs, and why they might switch. “There is no competitor” is not automatically good news; it may mean the demand assumption is wrong.
+That could mean direct sales, shops, distributors, online marketplaces, or another route. Each option has different costs and dependencies.
 
-### 3. Estimate the route to market
+### Do the numbers have a chance of working?
 
-Map how the product would reach the customer: direct sales, retail, distributors, marketplaces, or another channel. Include the costs and dependencies of that route.
+I'd estimate the cost of getting the product into the market, taxes and duties where relevant, distribution margins, sales costs, and a realistic selling price. I'd mark estimates clearly instead of presenting them as known figures.
 
-### 4. Check the economics
+### What could make the idea fail?
 
-Separate one-time setup costs from recurring costs. Estimate landed cost, taxes and duties where applicable, distribution margin, customer acquisition costs, and the price customers might accept. Mark estimates clearly.
+The most useful early question may be the one that threatens the whole plan: perhaps customers won't pay the price, or the product is difficult to distribute. I'd look for a cheap way to test that assumption first.
 
-### 5. Identify the riskiest assumption
+## What I'd need to verify
 
-Choose the uncertainty that could most easily invalidate the plan and design the cheapest credible test for it.
+- Competitor products and current prices.
+- Evidence that the target customers want the product.
+- Import rules and other relevant local requirements.
+- Realistic shipping, distribution, and sales costs.
+- Whether the price could leave a sustainable margin.
 
-## What would need verification
+None of those checks have been done for a particular product yet.
 
-- Current competitor products and prices.
-- Evidence of customer demand in the chosen segment.
-- Relevant import, regulatory, and distribution requirements.
-- Realistic delivery and acquisition costs.
-- Whether the proposed price leaves a sustainable margin.
+## A possible next step
 
-These items have not been researched for a specific product or market yet.
-
-## Next steps
-
-Choose one real product and one clearly defined target market, collect current sources, and build a small evidence table separating verified facts, estimates, and unanswered questions. Only then would it make sense to reach a preliminary recommendation.
+Pick one product and one market, collect current sources, and put the findings in a table with separate columns for verified facts, estimates, and open questions. That would give me something concrete to assess instead of a recommendation based on general impressions.

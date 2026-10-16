@@ -1,43 +1,39 @@
 ---
-title: A Business Idea Is a Hypothesis, Not an Identity
-description: Before getting attached to an idea, find out what would make it worth pursuing — and what would make you abandon it.
+title: How I'd Decide Whether a Business Idea Is Worth It
+description: A few questions I'd ask before putting time or money into an idea.
 date: 2026-10-01
 category: Entrepreneurship
 tags: [entrepreneurship, strategy, research]
 featured: true
 ---
-An idea can feel exciting long before it has earned that excitement. It is easy to imagine the product, the name, the website, and the version of the future where everything works. Much harder is asking whether anyone has a problem serious enough to change what they currently do.
+It's easy to get excited about an idea before doing much with it. You can picture the name, the website, the product, and how it might all work. The harder question is whether anyone actually has the problem you're trying to solve.
 
-I want to treat business ideas as hypotheses rather than identities. If an idea becomes part of how I see myself, criticism starts to feel personal. If it is a hypothesis, criticism is useful information.
+I'd rather treat an idea as something to check than something to defend. Once it becomes part of your identity, even fair criticism can feel like a personal attack. If it's just an idea, changing it or dropping it is normal.
 
-## Start with a specific person and problem
+## Start with one person and one problem
 
-“People need a better experience” is too vague to test. Who, exactly, is having the problem? When does it occur? What do they do about it now? What does the current solution cost them in money, time, inconvenience, or risk?
+"People need a better experience" doesn't tell me much. Who has the problem? When do they run into it? What do they do now, and what does that cost them in time, money, or frustration?
 
-The point is not to invent a perfect description on the first attempt. It is to make the claim specific enough that reality can disagree with it.
+I wouldn't expect to describe the problem perfectly at the start. I would want to make the claim clear enough that I could find out I'm wrong.
 
-## Look for behaviour, not compliments
+## Pay attention to what people do
 
-People can be kind about an idea without wanting it. Saying “that sounds useful” costs almost nothing. Existing spending, repeated effort, a willingness to try a prototype, or a concrete commitment can tell you more — although none of these alone guarantees a viable business.
+Someone saying "that's a good idea" is encouraging, but it doesn't mean they'd pay for it. Existing spending, a workaround they use every week, or a willingness to test a rough version gives you something more concrete to look at. Even then, one positive response isn't proof that a business will work.
 
-The strongest early evidence depends on the idea. A service might be tested with a small pilot. A product might need a prototype and a conversation with likely buyers. A software concept might begin with a manual version of the promised result.
+The right test depends on the idea. A service might start with a small trial. A product might need a rough prototype. Software could be tested by doing the task manually for a few people before building anything.
 
-## Work out what must be true
+## Find the assumption that could ruin it
 
-Before estimating a market or writing a business plan, list the assumptions that carry the idea. Perhaps customers can be reached cheaply. Perhaps they care enough to pay. Perhaps delivery costs less than the price they will accept. Perhaps a competitor cannot copy the offer immediately.
+Maybe it's too expensive to reach customers. Maybe people like the idea but won't pay the required price. Maybe a competitor already solves the problem well enough. I'd write down the assumptions and start with the one that is both uncertain and important.
 
-Then ask which assumption is both uncertain and dangerous. That is often the best place to start testing.
+## Pick a test before you start
 
-## Decide what would change your mind
+A test needs a question and some idea of what result would count against the idea. Otherwise, it's tempting to explain away every bad result as a minor problem.
 
-An experiment is much more useful when I know in advance what I am looking for. Otherwise, almost any result can be explained away as encouragement. A small test should have a question, a method, a result, and a limitation.
+A weak result doesn't always mean the whole idea is wrong. The audience, price, or offer may need changing. But changing the explanation every time the evidence looks bad can turn into an excuse to keep going.
 
-A failed test is not automatically proof that the entire idea is bad. It may show that the audience, offer, price, or method was wrong. But endlessly changing the explanation to protect an idea is not learning either.
+## When I'd stop
 
-## The practical standard
+I don't think an idea needs to be fully proven before it deserves a small test. It does need a real problem to investigate and a way to learn something without spending too much.
 
-A business idea does not need certainty before it deserves a small test. It does need a clear problem, assumptions that can be examined, and a willingness to stop if the evidence is poor.
-
-The aim is not to eliminate risk. It is to spend effort in proportion to what is known, and to learn cheaply before making expensive commitments.
-
-*This is a working framework, not a report of a validated business. The next step would be to apply it to a specific idea and record actual evidence separately from assumptions.*
+I haven't used this process to validate a business of my own yet. For now, it's a set of questions I want to apply to a specific idea and then compare with what actually happens.

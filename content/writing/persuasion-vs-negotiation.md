@@ -1,44 +1,44 @@
 ---
-title: Persuasion and Negotiation Are Different Problems
-description: One tries to change a mind; the other tries to find terms people can accept.
+title: Persuasion Isn't Negotiation
+description: Changing someone's mind and reaching an agreement are related, but different.
 date: 2026-09-22
 category: Negotiation
 tags: [negotiation, communication, strategy]
 featured: true
 ---
-Persuasion and negotiation overlap, but they are not the same task. Confusing them can turn a practical conversation into an argument that nobody needed to have.
+I find it useful to separate two questions: am I trying to get someone to see things differently, or are we trying to agree on what happens next? Those can overlap, but they aren't the same problem.
 
-Persuasion is mainly about changing what another person believes, values, or is willing to do. Negotiation is about reaching terms between people whose interests may overlap in some places and conflict in others. A negotiation can succeed even when neither person changes their underlying opinion.
+Persuasion is about changing what someone believes or is willing to do. Negotiation is about agreeing on terms when people have at least some different priorities. You can reach a workable agreement without convincing the other person that your view is right.
 
-## Start by identifying the actual problem
+## Work out what decision needs to be made
 
-If two people disagree about a policy, a purchase, a deadline, or a division of work, it is tempting to focus on proving who is right. But the decision they need to make may be narrower than the disagreement itself.
+Imagine two people disagree about a deadline or how a task should be split. They might spend an hour arguing over who is right when the immediate problem is simply how to get the work done.
 
-Before trying to persuade someone, ask: does this person need to agree with my reasoning, or do we need an arrangement that works for both of us?
+Before trying to persuade someone, I'd ask myself whether they really need to agree with my reasoning, or whether we need terms we can both live with.
 
-## Positions are not always interests
+## What someone asks for may not be the whole story
 
-A position is what someone says they want. An interest is the reason it matters to them. Someone insisting on a particular deadline may be protecting a dependency, avoiding a cost, or trying to reduce uncertainty. Those possibilities call for different solutions.
+A stated position is what a person says they want. The reason behind it may be different. Someone insisting on a deadline could be dealing with another commitment, trying to avoid extra costs, or worried about uncertainty.
 
-Guessing at another person's interests is not the same as knowing them. The responsible move is to ask questions and test your interpretation rather than treating your assumptions as facts.
+Those are possibilities, not facts. Asking a question is better than deciding I already know what the other person is thinking.
 
-## Look for trades, not tricks
+## Look for options
 
-A useful agreement may involve exchanging things that have different values to each side: timing, scope, flexibility, certainty, support, or price. The aim is not to manipulate someone into accepting a bad deal. It is to discover whether there is an arrangement that improves the outcome compared with the available alternatives.
+People sometimes care about different parts of a deal. One might value speed; another might care more about flexibility, support, scope, or price. That can create room for a trade, provided both sides are honest about their limits.
 
-That requires knowing your own limits too. If you have not thought about what you need, what you can offer, and what you will do if no agreement is reached, it is easy to accept terms simply to end the discomfort of negotiating.
+It also helps to know what happens if no deal is reached. Without a reasonable alternative, it's easy to accept bad terms just to end an uncomfortable conversation.
 
-## A compact preparation note
+## A note to prepare before a conversation
 
-Before a negotiation, write down four things:
+I'd write down four things:
 
-1. What outcome do I want, and why?
-2. What matters most to the other side, based on evidence rather than guesswork?
-3. Which terms could be exchanged or adjusted?
-4. What is my reasonable alternative if we do not reach agreement?
+1. What outcome do I want, and why does it matter?
+2. What do I actually know about the other person's priorities?
+3. Which parts of the deal could change?
+4. What will I do if we don't agree?
 
-This is a preparation aid, not a magic formula. Power differences, trust, culture, information, and the stakes of the situation all matter.
+That won't solve every negotiation. A checklist can't remove power imbalances, bad faith, or missing information. It can at least stop me from going in without thinking about what matters.
 
-## A question worth keeping
+## The distinction I want to remember
 
-When a conversation becomes difficult, I want to notice whether I am trying to win an argument or solve the problem that brought us there. Sometimes persuasion is necessary. Sometimes negotiation is the better tool. The first step is recognising which situation I am actually in.
+When a discussion gets tense, it's worth asking whether the goal is to persuade someone or to solve a shared problem. Sometimes the answer is both. Sometimes it isn't, and treating every disagreement as a debate just makes things harder.
