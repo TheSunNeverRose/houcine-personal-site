@@ -1,7 +1,7 @@
 // Personal details live here so the site can evolve without editing templates.
 export default {
   name: 'Houcine',
-  title: 'Houcine | Notes & Experiments',
+  title: 'Houcine | Business, AI, Philosophy & Research Notes',
   tagline: 'Personal writing and project notes on business, international markets, AI research, and philosophy.',
   url: 'https://houcine-notes.hssinmbarek6.workers.dev',
   base: '',
@@ -25,11 +25,6 @@ export default {
     { name: 'International business', note: 'Markets, cross-border trade, and entry questions' },
     { name: 'Technology & AI', note: 'Research software, model behaviour, and source checking' },
     { name: 'Philosophy', note: 'Arguments about reality, knowledge, and religion' },
-  ],
-  focus: [
-    { label: 'Research agent', text: 'I found a problem in the adjudication code that can overwrite the verdict and confidence with UNDETERMINED. The project page explains why that matters.' },
-    { label: 'Market study', text: 'I compared public trade data with Singapore import guidance to see what can and cannot be concluded about Tunisian olive oil.' },
-    { label: 'Study options', text: "I'm comparing English, business management, and international management before choosing what to study." },
   ],
   closing: "I update this site when I have something worth recording. Some entries are more developed than others, and the page should make that clear.",
   footerLine: 'Writing and project notes by Houcine.',

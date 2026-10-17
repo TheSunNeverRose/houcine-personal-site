@@ -132,7 +132,7 @@ function load(dir) {
 }
 
 const date = d => String(d).slice(0, 10);
-const nav = [['/', 'Home'], ['/writing/', 'Writing'], ['/projects/', 'Projects'], ['/about/', 'About'], ['/faq/', 'FAQ'], ['/search/', 'Search']];
+const nav = [['/', 'Home'], ['/now/', 'Now'], ['/writing/', 'Writing'], ['/projects/', 'Projects'], ['/about/', 'About'], ['/faq/', 'FAQ'], ['/search/', 'Search']];
 const links = () => [cfg.email && `<a href="mailto:${esc(cfg.email)}">${esc(cfg.email)}</a>`, ...Object.entries(cfg.social || {}).filter(([, v]) => v).map(([k, v]) => `<a href="${esc(v)}" rel="noopener noreferrer" target="_blank">${esc(k)}</a>`)].filter(Boolean);
 const personId = U ? `${U}/#person` : '#person';
 const websiteId = U ? `${U}/#website` : '#website';
@@ -159,11 +159,13 @@ function schemaScript({ title, desc, path: p, pageType = 'WebPage', mainEntity, 
   return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')}</script>`;
 }
 function layout({ title, desc, path: p, body, type = 'website', pageType = 'WebPage', mainEntity, extraSchema = [] }) {
-  const rawTitle = title ? `${title} | ${cfg.name}` : 'Houcine | Business, AI, Philosophy and Research Notes';
-  // Keep titles distinctive without appending a long site name to already-long article titles.
-  const t = rawTitle.length > 60 ? (title && title.length <= 60 ? title : rawTitle.slice(0, 57).trimEnd() + '…') : rawTitle;
-  const rawDesc = (desc || cfg.tagline).replace(/\\s+/g, ' ').trim();
-  const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\\s+\\S*$/, '') + '…' : rawDesc;
+  // Keep concise page titles branded; leave longer article titles intact rather than cutting off the subject.
+  const t = title ? (title.length <= 48 ? `${title} | ${cfg.name}` : title) : cfg.title;
+  // Normalize real whitespace, then truncate on a word boundary. In a JS regex literal, \s means whitespace.
+  const rawDesc = String(desc || cfg.tagline).replace(/\s+/g, ' ').trim();
+  const metaDesc = rawDesc.length > 155
+    ? `${rawDesc.slice(0, 152).replace(/\s+\S*$/, '').trimEnd()}…`
+    : rawDesc;
   const d = esc(metaDesc);
   const L = links();
   const canonical = U ? `${U}${B}${p}` : '';
@@ -171,9 +173,12 @@ function layout({ title, desc, path: p, body, type = 'website', pageType = 'WebP
   const schemas = schemaScript({ title: t, desc: metaDesc, path: p, pageType, mainEntity, extraSchema });
   const robots = ['/search/', '/404/'].includes(p) ? 'noindex,follow' : 'index,follow,max-image-preview:large';
   const ogImage = U ? `${U}${B}/og-cover.png` : `${B}/og-cover.png`;
-  return `<!doctype html><html lang="${cfg.lang || 'en'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t)}</title><meta name="description" content="${d}"><meta name="robots" content="${robots}">${canonicalTag}<meta property="og:site_name" content="${esc(cfg.title)}"><meta property="og:title" content="${esc(t)}"><meta property="og:description" content="${d}"><meta property="og:type" content="${type}"><meta property="og:locale" content="en_US"><meta property="og:image" content="${esc(ogImage)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${esc(ogImage)}"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#10100f"><link rel="icon" type="image/svg+xml" href="${H('/favicon.svg?v=2')}"><link rel="alternate" type="application/rss+xml" title="${esc(cfg.title)} RSS" href="${H('/feed.xml')}"><link rel="stylesheet" href="${H('/style.css')}"><script defer src="${H('/app.js')}"></script>${schemas}</head><body><a class="skip" href="#main">Skip to content</a><header class="top"><div class="in"><a class="mark" href="${H('/')}">${esc(cfg.name)}</a><button class="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav" aria-label="Primary">${nav.map(([u, n]) => `<a href="${H(u)}"${p === u || (u !== '/' && p.startsWith(u)) ? ' aria-current="page"' : ''}>${n}</a>`).join('')}</nav></div></header><main id="main">${body}</main><footer><div class="in"><a class="mark" href="${H('/')}">${esc(cfg.name)}</a><nav aria-label="Footer">${nav.filter(([u]) => u !== '/search/').map(([u, n]) => `<a href="${H(u)}">${n}</a>`).join('')}<a href="${H('/feed.xml')}">RSS</a>${L.join('')}</nav><p>&copy; ${new Date().getFullYear()} ${esc(cfg.name)}. ${esc(cfg.footerLine)}</p></div></footer></body></html>`;
+  return `<!doctype html><html lang="${cfg.lang || 'en'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t)}</title><meta name="description" content="${d}"><meta name="robots" content="${robots}">${canonicalTag}<meta property="og:site_name" content="${esc(cfg.title)}"><meta property="og:title" content="${esc(t)}"><meta property="og:description" content="${d}"><meta property="og:type" content="${type}"><meta property="og:locale" content="en_US"><meta property="og:image" content="${esc(ogImage)}"><meta property="og:image:alt" content="Houcine — Notes and Experiments, covering business, AI research, and philosophy"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(t)}"><meta name="twitter:description" content="${d}"><meta name="twitter:image" content="${esc(ogImage)}"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#10100f"><link rel="icon" type="image/svg+xml" href="${H('/favicon.svg?v=2')}"><link rel="alternate" type="application/rss+xml" title="${esc(cfg.title)} RSS" href="${H('/feed.xml')}"><link rel="stylesheet" href="${H('/style.css')}"><script defer src="${H('/app.js')}"></script>${schemas}</head><body><a class="skip" href="#main">Skip to content</a><header class="top"><div class="in"><a class="mark" href="${H('/')}">${esc(cfg.name)}</a><button class="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav" aria-label="Primary">${nav.map(([u, n]) => `<a href="${H(u)}"${p === u || (u !== '/' && p.startsWith(u)) ? ' aria-current="page"' : ''}>${n}</a>`).join('')}</nav></div></header><main id="main">${body}</main><footer><div class="in"><a class="mark" href="${H('/')}">${esc(cfg.name)}</a><nav aria-label="Footer">${nav.filter(([u]) => u !== '/search/').map(([u, n]) => `<a href="${H(u)}">${n}</a>`).join('')}<a href="${H('/feed.xml')}">RSS</a>${L.join('')}</nav><p>&copy; ${new Date().getFullYear()} ${esc(cfg.name)}. ${esc(cfg.footerLine)}</p></div></footer></body></html>`;
 }
 
+const categorySlug = value => String(value || '').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+let indexedTopics = new Set();
+let topicNames = new Map();
 const row = (x, extra) => `<li class="row" data-cat="${esc(x.category)}"><a href="${H(x.url)}"><span class="meta mono">${date(x.date)}</span><div><h3>${esc(x.title)}</h3><p>${esc(x.description)}</p><span class="meta">${[x.category, extra].filter(Boolean).map(esc).join('<i></i>')}${x.sample ? '<span class="tag sample">Demonstration</span>' : ''}</span></div></a></li>`;
 const sec = (t, l, items, fn) => `<section class="in sec"><div class="sh"><h2 class="label">${t}</h2><a href="${H(l)}">View all</a></div>${items.length ? `<ul class="list">${items.map(fn).join('')}</ul>` : '<p class="empty">Nothing here yet.</p>'}</section>`;
 const pick = a => [...a.filter(x => x.featured), ...a.filter(x => !x.featured)].slice(0, 3);
@@ -182,8 +187,8 @@ const related = (x, all) => all.filter(y => y !== x).map(y => [y, (y.category &&
 const home = (A, P) => layout({ path: '/', body: `<section class="in hero"><div class="hero-grid"><div class="hero-copy"><p class="label"><span class="live-dot"></span>${esc(cfg.heroLabel)}</p><h1>${esc(cfg.headline)}</h1><p class="lede">${esc(cfg.intro)}</p><p class="cta"><a class="btn btn-primary" href="${H('/writing/')}">Read the writing <span aria-hidden="true">↗</span></a><a class="text-link" href="${H('/projects/')}">Explore projects <span aria-hidden="true">→</span></a></p></div><aside class="hero-note" aria-label="A note on how this site works"><p class="note-kicker mono">A NOTE</p><div class="note-mark" aria-hidden="true">“</div><p class="note-quote">Check the source, then check what the source actually supports.</p><div class="note-rule"></div><div class="note-bottom"><span>PERSONAL NOTES</span><span>UPDATED IRREGULARLY</span></div></aside></div><div class="hero-foot"><span>BUSINESS · AI · PHILOSOPHY</span><a href="${H('/about/')}">About Houcine <span aria-hidden="true">↗</span></a></div></section>
 <section class="in sec interests-sec"><div class="section-intro"><p class="label">Areas of interest</p><h2>Topics I keep<br>coming back to.</h2></div><ul class="idx">${cfg.interests.map((i, n) => `<li><span class="interest-name"><span class="index-no mono">0${n + 1}</span>${esc(i.name)}</span><span class="meta">${esc(i.note)}</span></li>`).join('')}</ul></section>
 ${sec('Writing', '/writing/', pick(A), x => row(x, `${x.mins} min read`))}${sec('Projects', '/projects/', pick(P), x => row(x, STAT[x.status]))}
-<section class="in sec focus-sec"><div class="section-intro"><p class="label">Lately</p><h2>What I'm working on<br>right now.</h2><p class="section-desc">A few concrete things from the current work.</p></div><dl class="focus">${cfg.focus.map((f, i) => `<div class="focus-item"><dt><span class="index-no mono">0${i + 1}</span>${esc(f.label)}</dt><dd>${esc(f.text)}</dd></div>`).join('')}</dl></section>
-<section class="in sec site-info"><div class="section-intro"><p class="label">Site information</p><h2>Before you browse.</h2></div><div class="prose"><p>${esc(cfg.audience)}</p><p>${esc(cfg.publishingSchedule)}</p><p>${esc(cfg.contentPolicy)} ${esc(cfg.newsletterPolicy)}</p><p>${esc(cfg.submissionsPolicy)}</p><p><a href="${H('/faq/')}">Read the full FAQ</a> or <a href="${H('/feed.xml')}">subscribe to the RSS feed</a>.</p></div></section>
+<section class="in sec focus-sec"><div class="section-intro"><p class="label">Lately</p><h2>What I'm working on<br>right now.</h2><p class="section-desc">A changeable snapshot of my study options, research, and projects.</p><p><a class="text-link" href="${H('/now/')}">Read the current update <span aria-hidden="true">↗</span></a></p></div><div class="prose"><p>I keep the current details on a separate page so there is one place to update them as priorities change.</p></div></section>
+<section class="in sec site-info"><div class="section-intro"><p class="label">Site information</p><h2>Before you browse.</h2></div><div class="prose"><p>${esc(cfg.audience)}</p><p>${esc(cfg.publishingSchedule)}</p><p>${esc(cfg.contentPolicy)} ${esc(cfg.newsletterPolicy)}</p><p>${esc(cfg.submissionsPolicy)}</p><p><a href="${H('/faq/')}">Read the full FAQ</a>, <a href="${H('/topics/')}">browse topics</a>, or <a href="${H('/feed.xml')}">subscribe to the RSS feed</a>.</p></div></section>
 <section class="in sec close"><p class="label">For now</p><p class="big">${esc(cfg.closing)}</p><p><a class="btn" href="${H('/about/')}">About me <span aria-hidden="true">↗</span></a></p></section>` });
 
 function indexPage(kind, label, h1, intro, items, fn) {
@@ -214,7 +219,17 @@ function detail(x, all, back, meta, pn = '') {
     };
     if (x.slug === 'ultimate-reality-researcher') workSchema.codeRepository = 'https://github.com/TheSunNeverRose/Ultimate-Reality-Researcher';
   }
-  return layout({ title: x.title, desc: x.description, path: x.url, type: 'article', extraSchema: [workSchema], body: `<div class="in"><article class="read"><a class="back" href="${H(back[0])}">Back to ${back[1]}</a><header class="ah"><p class="label">${esc(x.category || back[1])}</p><h1>${esc(x.title)}</h1><p class="lede">${esc(x.description)}</p>${meta}</header>${x.sample ? '<p class="note"><strong>Demonstration content.</strong> This shows how the template works. It is not real published work or a real result. Delete the file, or remove <code>sample: true</code>, when you replace it.</p>' : ''}<div class="prose">${x.html}</div>${x.tags.length ? `<p class="tags">${x.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</p>` : ''}${pn}${r.length ? `<section class="rel"><h2 class="label">Related</h2><ul class="list">${r.map(y => row(y)).join('')}</ul></section>` : ''}</article></div>` });
+  const catSlug = categorySlug(x.category);
+  const categoryLabel = x.category && indexedTopics.has(catSlug)
+    ? `<a href="${H(`/topics/${catSlug}/`)}">${esc(x.category)}</a>`
+    : esc(x.category || back[1]);
+  const tagMarkup = x.tags.map(t => {
+    const slug = categorySlug(t);
+    return indexedTopics.has(slug)
+      ? `<a class="tag" href="${H(`/topics/${slug}/`)}">${esc(t)}</a>`
+      : `<span class="tag">${esc(t)}</span>`;
+  }).join('');
+  return layout({ title: x.title, desc: x.description, path: x.url, type: 'article', extraSchema: [workSchema], body: `<div class="in"><article class="read"><a class="back" href="${H(back[0])}">Back to ${back[1]}</a><header class="ah"><p class="label">${categoryLabel}</p><h1>${esc(x.title)}</h1><p class="lede">${esc(x.description)}</p>${meta}</header>${x.sample ? '<p class="note"><strong>Demonstration content.</strong> This shows how the template works. It is not real published work or a real result. Delete the file, or remove <code>sample: true</code>, when you replace it.</p>' : ''}<div class="prose">${x.html}</div>${x.tags.length ? `<p class="tags">${tagMarkup}</p>` : ''}${pn}${r.length ? `<section class="rel"><h2 class="label">Related</h2><ul class="list">${r.map(y => row(y)).join('')}</ul></section>` : ''}</article></div>` });
 }
 
 const pnav = (o, n) => o || n ? `<nav class="pn" aria-label="More writing">${o ? `<a href="${H(o.url)}"><span class="meta">Older</span>${esc(o.title)}</a>` : '<span></span>'}${n ? `<a class="r" href="${H(n.url)}"><span class="meta">Newer</span>${esc(n.title)}</a>` : '<span></span>'}</nav>` : '';
@@ -231,6 +246,23 @@ function build() {
   const put = (p, s) => { const f = path.join(D, p); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, s); };
   if (fs.existsSync('static')) fs.cpSync('static', D, { recursive: true });
 
+  const topicGroups = new Map();
+  topicNames = new Map();
+  for (const item of [...A, ...P]) {
+    const terms = [item.category, ...(Array.isArray(item.tags) ? item.tags : [])].filter(Boolean);
+    for (const term of terms) {
+      const slug = categorySlug(term);
+      if (!slug) continue;
+      if (!topicGroups.has(slug)) {
+        topicGroups.set(slug, []);
+        topicNames.set(slug, String(term).replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
+      }
+      if (!topicGroups.get(slug).some(existing => existing.url === item.url)) topicGroups.get(slug).push(item);
+    }
+  }
+  // A topical archive is indexed only when it helps connect at least two distinct pages.
+  indexedTopics = new Set([...topicGroups.entries()].filter(([, items]) => items.length >= 2).map(([slug]) => slug));
+
   put('index.html', home(A, P));
   put('writing/index.html', indexPage('writing', 'Writing', 'Writing and notes', 'Short essays on negotiation and international business, including a source-based market-entry exercise.', A, x => row(x, `${x.mins} min read`)));
   A.forEach((x, i) => put(`writing/${x.slug}/index.html`, detail(x, A, ['/writing/', 'writing'], `<p class="meta"><span class="mono">${date(x.date)}</span>${x.updated ? `<i></i>Updated ${date(x.updated)}` : ''}<i></i>${x.mins} min read</p>`, pnav(A[i + 1], A[i - 1]))));
@@ -239,7 +271,26 @@ function build() {
 
   const about = cfg.about;
   const profileId = `${U}${B}/#person`;
-  put('about/index.html', layout({ title: 'About', desc: about.intro[0], path: '/about/', pageType: 'ProfilePage', mainEntity: { '@id': profileId }, body: `<div class="in sec first"><article class="read"><p class="label">About</p><h1>About Houcine</h1><div class="prose">${about.intro.map(p => `<p>${esc(p)}</p>`).join('')}<h2>What I'm working on</h2><p>${esc(about.stage)}</p><h2>Questions I'm looking into</h2><ul>${li(about.questions)}</ul><h2>What I'm learning</h2><ul>${li(about.learning)}</ul><h2>Where I'd like to go</h2><p>${esc(about.direction)}</p><h2>Contact and feedback</h2><p>There is no general contact form or public email address at the moment. For technical feedback about the research agent, visit its <a href="https://github.com/TheSunNeverRose/Ultimate-Reality-Researcher" rel="noopener noreferrer" target="_blank">public GitHub repository</a>.</p><p><a href="${H('/writing/')}">Read the writing</a>, <a href="${H('/projects/')}">browse the projects</a>, or check the <a href="${H('/faq/')}">site FAQ</a>.</p></div></article></div>` }));
+  put('about/index.html', layout({ title: 'About', desc: about.intro[0], path: '/about/', pageType: 'ProfilePage', mainEntity: { '@id': profileId }, body: `<div class="in sec first"><article class="read"><p class="label">About</p><h1>About Houcine</h1><div class="prose">${about.intro.map(p => `<p>${esc(p)}</p>`).join('')}<h2>What I'm working on</h2><p>${esc(about.stage)}</p><h2>Questions I'm looking into</h2><ul>${li(about.questions)}</ul><h2>What I'm learning</h2><ul>${li(about.learning)}</ul><h2>Where I'd like to go</h2><p>${esc(about.direction)}</p><h2>Contact and feedback</h2><p>I don't publish an email address or run a contact form. For public feedback, start with my <a href="https://github.com/TheSunNeverRose" rel="noopener noreferrer" target="_blank">GitHub profile</a>; for technical feedback about the research agent, use its <a href="https://github.com/TheSunNeverRose/Ultimate-Reality-Researcher" rel="noopener noreferrer" target="_blank">public repository</a>.</p><p><a href="${H('/writing/')}">Read the writing</a>, <a href="${H('/projects/')}">browse the projects</a>, or check the <a href="${H('/faq/')}">site FAQ</a>.</p></div></article></div>` }));
+
+  const nowFile = path.join(R, 'content', 'now.md');
+  if (!fs.existsSync(nowFile)) throw new Error('Missing content/now.md');
+  const nowText = fs.readFileSync(nowFile, 'utf8').trim();
+  put('now/index.html', layout({ title: 'Now', desc: 'What Houcine is studying, building, and researching right now, with clear notes about the status and limits of each project.', path: '/now/', body: `<section class="in sec first"><article class="read"><p class="label">Current focus</p><h1>What I'm working on now</h1><p class="lede">A living snapshot of my current learning and project work.</p><div class="prose">${md(nowText)}</div><p><a href="${H('/about/')}">More about me</a> · <a href="${H('/projects/')}">Browse projects</a></p></article></section>` }));
+
+  const topics = [...indexedTopics].sort((a, b) => topicNames.get(a).localeCompare(topicNames.get(b)));
+  put('topics/index.html', layout({ title: 'Topics', desc: 'Browse related writing and project pages grouped by recurring topics.', path: '/topics/', pageType: 'CollectionPage', body: `<section class="in sec first"><p class="label">Browse by topic</p><h1>Topics</h1><p class="lede">A few shared subjects connect the writing and projects. Archives appear only when more than one published page belongs to a topic.</p><ul class="list">${topics.map(slug => `<li class="row"><a href="${H(`/topics/${slug}/`)}"><div><h2>${esc(topicNames.get(slug))}</h2><p>${topicGroups.get(slug).length} related published pages</p></div></a></li>`).join('')}</ul><p><a href="${H('/writing/')}">All writing</a> · <a href="${H('/projects/')}">All projects</a></p></section>` }));
+  for (const slug of topics) {
+    const items = topicGroups.get(slug).slice().sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    const label = topicNames.get(slug);
+    const pathName = `/topics/${slug}/`;
+    const canonical = U ? `${U}${B}${pathName}` : pathName;
+    const listId = `${canonical}#item-list`;
+    const itemList = { '@type': 'ItemList', '@id': listId, itemListElement: items.map((x, i) => ({ '@type': 'ListItem', position: i + 1, url: U ? `${U}${B}${x.url}` : x.url, name: x.title })) };
+    const body = items.map(x => row(x, x.kind === 'writing' ? `${x.mins} min read` : STAT[x.status])).join('');
+    put(`topics/${slug}/index.html`, layout({ title: label, desc: `Writing and projects connected to ${label}.`, path: pathName, pageType: 'CollectionPage', mainEntity: { '@id': listId }, extraSchema: [itemList], body: `<section class="in sec first"><p class="label">Topic archive</p><h1>${esc(label)}</h1><p class="lede">Related published writing and projects on this topic.</p><ul class="list">${body}</ul><p><a href="${H('/topics/')}">All topics</a> · <a href="${H('/writing/')}">All writing</a> · <a href="${H('/projects/')}">All projects</a></p></section>` }));
+  }
+
 
   const faqSchemaItems = faqItems.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } }));
   const faqBody = faqItems.map((item, i) => {
@@ -253,16 +304,19 @@ function build() {
   put('search.json', JSON.stringify([...A, ...P].map(x => ({ t: x.title, d: x.description, u: H(x.url), k: x.kind === 'writing' ? 'Writing' : 'Project', x: x.body.replace(/[#*`>\[\]()_-]/g, ' ').slice(0, 4000) }))));
   put('404.html', layout({ title: 'Not found', desc: 'The requested page could not be found. Return to Houcine’s homepage or browse the published writing and projects.', path: '/404/', body: `<section class="in sec first"><h1>Page not found</h1><p class="lede">That address does not exist here. <a href="${H('/')}">Go to the homepage</a>.</p></section>` }));
 
-  const sitemapPaths = ['/', '/writing/', '/projects/', '/about/', '/faq/', ...A.map(x => x.url), ...P.map(x => x.url)];
-  const crawlAgents = [
-    'GPTBot', 'ChatGPT-User', 'OAI-SearchBot', 'Google-Extended',
-    'ClaudeBot', 'anthropic-ai', 'Claude-Web', 'PerplexityBot',
-    'Perplexity-User', 'CCBot', 'Applebot-Extended', 'Bytespider',
-    'Amazonbot', 'Meta-ExternalAgent', 'MistralAI-User'
-  ];
-  // Give each named crawler an explicit allow-all group so audits do not mistake
-  // a generic group or an absent named group for a partial restriction.
-  put('robots.txt', `User-agent: *\nAllow: /\n\n${crawlAgents.map(agent => `User-agent: ${agent}\nAllow: /`).join('\n\n')}\n${U ? `\nSitemap: ${U}${B}/sitemap.xml\n` : ''}`);
+  const sitemapPaths = ['/', '/now/', '/writing/', '/projects/', '/about/', '/faq/', '/topics/', ...[...indexedTopics].map(slug => `/topics/${slug}/`), ...A.map(x => x.url), ...P.map(x => x.url)];
+  // Allow documented AI search/retrieval agents. Google-Extended is also allowed because it supports Gemini grounding,
+  // with the trade-off that Google's published policy covers model training use as well. Training-focused bots remain blocked.
+  const retrievalAgents = ['OAI-SearchBot', 'ChatGPT-User', 'Google-Extended', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'MistralAI-User'];
+  const trainingAgents = ['GPTBot', 'ClaudeBot', 'CCBot', 'Applebot-Extended', 'Bytespider'];
+  const robots = [
+    '# Public pages are available to ordinary search engines and AI search/retrieval systems.',
+    'User-agent: *', 'Allow: /', '',
+    ...retrievalAgents.flatMap(agent => [`User-agent: ${agent}`, 'Allow: /', '']),
+    '# Training-focused crawlers are blocked; Google-Extended is allowed above to support Gemini grounding, with its documented dual-use trade-off.',
+    ...trainingAgents.flatMap(agent => [`User-agent: ${agent}`, 'Disallow: /', ''])
+  ].join('\n').trim() + (U ? `\n\nSitemap: ${U}${B}/sitemap.xml\n` : '\n');
+  put('robots.txt', robots);
   if (U) {
     const dateMap = new Map([...A, ...P].map(x => [x.url, date(x.updated || x.date)]));
     put('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemapPaths.map(p => `<url><loc>${xml(`${U}${B}${p}`)}</loc>${dateMap.has(p) ? `<lastmod>${dateMap.get(p)}</lastmod>` : ''}</url>`).join('')}</urlset>`);
@@ -282,6 +336,8 @@ function build() {
     '',
     '## Key pages',
     `- [Home](${pageUrl('/')}): Overview of the site, its main topics, current work, publishing schedule, and access policy.`,
+    `- [Now](${pageUrl('/now/')}): A current, editable snapshot of study options, research, and project work.`,
+    `- [Topics](${pageUrl('/topics/')}): Archive pages that connect published items sharing a topic.`,
     `- [About](${pageUrl('/about/')}): Author background, current interests, learning goals, and project context.`,
     `- [Frequently asked questions](${pageUrl('/faq/')}): Direct answers about the site, content access, newsletter, posting frequency, and submissions.`,
     `- [Writing](${pageUrl('/writing/')}): Published essays and research notes.`,
@@ -293,6 +349,9 @@ function build() {
     '',
     '## Projects',
     ...P.map(x => `- [${x.title}](${pageUrl(x.url)}): ${x.description} Status: ${STAT[x.status]}.`),
+    '',
+    '## Topic archives',
+    ...[...indexedTopics].map(slug => `- [${topicNames.get(slug)}](${pageUrl(`/topics/${slug}/`)}): Public pages grouped under this topic.`),
     '',
     '## Notes on interpretation',
     '- The site is a personal learning log, not a professional advisory service.',

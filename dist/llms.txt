@@ -1,4 +1,4 @@
-# Houcine | Notes & Experiments
+# Houcine | Business, AI, Philosophy & Research Notes
 > Personal website by Houcine: essays, research notes, and small projects about business, international markets, negotiation, AI-assisted research, and philosophy.
 
 Curious readers, students, and self-learners who want to read about business decisions, international markets, negotiation, AI-assisted research, and philosophy, including how early-stage work develops.
@@ -11,6 +11,8 @@ Submissions: There is no guest-author program or formal pitch/submission process
 
 ## Key pages
 - [Home](https://houcine-notes.hssinmbarek6.workers.dev/): Overview of the site, its main topics, current work, publishing schedule, and access policy.
+- [Now](https://houcine-notes.hssinmbarek6.workers.dev/now/): A current, editable snapshot of study options, research, and project work.
+- [Topics](https://houcine-notes.hssinmbarek6.workers.dev/topics/): Archive pages that connect published items sharing a topic.
 - [About](https://houcine-notes.hssinmbarek6.workers.dev/about/): Author background, current interests, learning goals, and project context.
 - [Frequently asked questions](https://houcine-notes.hssinmbarek6.workers.dev/faq/): Direct answers about the site, content access, newsletter, posting frequency, and submissions.
 - [Writing](https://houcine-notes.hssinmbarek6.workers.dev/writing/): Published essays and research notes.
@@ -24,6 +26,13 @@ Submissions: There is no guest-author program or formal pitch/submission process
 ## Projects
 - [Tunisian Olive Oil in Singapore: A First-Pass Market Study](https://houcine-notes.hssinmbarek6.workers.dev/projects/market-entry-hypothetical-product/): A desk-research exercise using trade data and Singapore's official import guidance to find out what needs checking before anyone recommends market entry. Status: Completed.
 - [Ultimate Reality Researcher](https://houcine-notes.hssinmbarek6.workers.dev/projects/ultimate-reality-researcher/): A multi-stage AI research agent for comparing arguments about metaphysics and religion, including a failure I found in its own reasoning pipeline. Status: In progress.
+
+## Topic archives
+- [International Business](https://houcine-notes.hssinmbarek6.workers.dev/topics/international-business/): Public pages grouped under this topic.
+- [Market Entry](https://houcine-notes.hssinmbarek6.workers.dev/topics/market-entry/): Public pages grouped under this topic.
+- [Tunisia](https://houcine-notes.hssinmbarek6.workers.dev/topics/tunisia/): Public pages grouped under this topic.
+- [Singapore](https://houcine-notes.hssinmbarek6.workers.dev/topics/singapore/): Public pages grouped under this topic.
+- [Research](https://houcine-notes.hssinmbarek6.workers.dev/topics/research/): Public pages grouped under this topic.
 
 ## Notes on interpretation
 - The site is a personal learning log, not a professional advisory service.
