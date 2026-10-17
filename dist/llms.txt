@@ -1,0 +1,32 @@
+# Houcine | Notes & Experiments
+> Personal website by Houcine: essays, research notes, and small projects about business, international markets, negotiation, AI-assisted research, and philosophy.
+
+Curious readers, students, and self-learners who want to read about business decisions, international markets, negotiation, AI-assisted research, and philosophy, including how early-stage work develops.
+
+Author and credentials: Houcine writes personal essays and documents self-directed research and software projects. This site does not claim formal academic or professional credentials.
+Publishing: There is no fixed publishing schedule. New posts appear irregularly when Houcine has a piece of writing or a project result worth documenting. The site does not promise weekly or monthly updates.
+Access: All currently published writing and project pages are free to read. There are no paid tiers, memberships, paywalls, or paid downloads.
+Newsletter: There is no email newsletter or mailing list. Readers can follow new writing with the RSS feed at /feed.xml.
+Submissions: There is no guest-author program or formal pitch/submission process, and guest posts are not currently being solicited. Technical feedback about the Ultimate Reality Researcher project can be directed to its public GitHub repository.
+
+## Key pages
+- [Home](https://houcine-notes.hssinmbarek6.workers.dev/): Overview of the site, its main topics, current work, publishing schedule, and access policy.
+- [About](https://houcine-notes.hssinmbarek6.workers.dev/about/): Author background, current interests, learning goals, and project context.
+- [Frequently asked questions](https://houcine-notes.hssinmbarek6.workers.dev/faq/): Direct answers about the site, content access, newsletter, posting frequency, and submissions.
+- [Writing](https://houcine-notes.hssinmbarek6.workers.dev/writing/): Published essays and research notes.
+- [Projects](https://houcine-notes.hssinmbarek6.workers.dev/projects/): Public software and research exercises.
+- [RSS feed](https://houcine-notes.hssinmbarek6.workers.dev/feed.xml): Subscribe to new writing in a feed reader.
+
+## Writing
+- [International Business Got More Concrete When I Picked a Product](https://houcine-notes.hssinmbarek6.workers.dev/writing/learning-international-business/): What a small desk-research exercise on Tunisian olive oil and Singapore taught me about market-entry questions. Published 2026-10-16.
+- [Persuasion Isn't Negotiation](https://houcine-notes.hssinmbarek6.workers.dev/writing/persuasion-vs-negotiation/): A distinction that matters when the goal is an agreement rather than a change of mind. Published 2026-09-22.
+
+## Projects
+- [Tunisian Olive Oil in Singapore: A First-Pass Market Study](https://houcine-notes.hssinmbarek6.workers.dev/projects/market-entry-hypothetical-product/): A desk-research exercise using trade data and Singapore's official import guidance to find out what needs checking before anyone recommends market entry. Status: Completed.
+- [Ultimate Reality Researcher](https://houcine-notes.hssinmbarek6.workers.dev/projects/ultimate-reality-researcher/): A multi-stage AI research agent for comparing arguments about metaphysics and religion, including a failure I found in its own reasoning pipeline. Status: In progress.
+
+## Notes on interpretation
+- The site is a personal learning log, not a professional advisory service.
+- The Tunisian olive oil and Singapore page is desk research, not a launched business or a validated market-entry recommendation.
+- Ultimate Reality Researcher is experimental software. It does not establish the truth of any metaphysical or religious conclusion.
+- No products, paid memberships, premium posts, or email newsletter are offered.

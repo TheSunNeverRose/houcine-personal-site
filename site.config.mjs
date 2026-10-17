@@ -2,51 +2,57 @@
 export default {
   name: 'Houcine',
   title: 'Houcine | Notes & Experiments',
-  tagline: "Notes on business, philosophy, technology, and what I'm learning.",
-  url: 'https://houcine-notes.hssinmbarek6.workers.dev', // Canonical public URL for sitemap and metadata.
+  tagline: 'Personal writing and project notes on business, international markets, AI research, and philosophy.',
+  url: 'https://houcine-notes.hssinmbarek6.workers.dev',
   base: '',
   lang: 'en',
-  email: '', // Add a public contact email only if you want it displayed.
+  email: '', // A public email is deliberately omitted until one is chosen.
   social: {
-    github: 'https://github.com/TheSunNeverRose/Ultimate-Reality-Researcher',
+    github: 'https://github.com/TheSunNeverRose',
   },
+  authorDescription: 'Houcine writes personal essays and documents self-directed research and software projects. This site does not claim formal academic or professional credentials.',
+  audience: 'Curious readers, students, and self-learners who want to read about business decisions, international markets, negotiation, AI-assisted research, and philosophy, including how early-stage work develops.',
+  publishingSchedule: 'There is no fixed publishing schedule. New posts appear irregularly when Houcine has a piece of writing or a project result worth documenting. The site does not promise weekly or monthly updates.',
+  contentPolicy: 'All currently published writing and project pages are free to read. There are no paid tiers, memberships, paywalls, or paid downloads.',
+  newsletterPolicy: 'There is no email newsletter or mailing list. Readers can follow new writing with the RSS feed at /feed.xml.',
+  submissionsPolicy: 'There is no guest-author program or formal pitch/submission process, and guest posts are not currently being solicited. Technical feedback about the Ultimate Reality Researcher project can be directed to its public GitHub repository.',
   heroLabel: 'Personal site',
-  headline: "Business, philosophy, tech, and questions I haven't settled yet.",
-  intro: "I'm Houcine. I'm still working out what I want to study and where I want to go. In the meantime, I read, test ideas, build small projects, and write down what I learn here.",
+  headline: "Ideas, projects, and things I'm still trying to figure out.",
+  intro: "I'm Houcine. I write about business and philosophy, and keep notes on projects while I work through them. The most developed work here is an AI research agent and a desk study of Tunisian olive oil in Singapore.",
   interests: [
-    { name: 'Business & entrepreneurship', note: 'Why some ideas work and others do not' },
-    { name: 'Negotiation & human behaviour', note: 'What people want, what they say, and what they agree to' },
-    { name: 'International business', note: 'How work changes across markets and cultures' },
-    { name: 'Technology & AI', note: 'Tools for research, building, and experiments' },
-    { name: 'Philosophy', note: 'Questions about reality, knowledge, and first principles' },
+    { name: 'Business & entrepreneurship', note: 'Business assumptions, customer problems, and basic economics' },
+    { name: 'Negotiation & human behaviour', note: 'Persuasion, incentives, trust, and reaching agreement' },
+    { name: 'International business', note: 'Markets, cross-border trade, and entry questions' },
+    { name: 'Technology & AI', note: 'Research software, model behaviour, and source checking' },
+    { name: 'Philosophy', note: 'Arguments about reality, knowledge, and religion' },
   ],
   focus: [
-    { label: 'Study', text: "I'm comparing English, business management, and international management before deciding what to pursue." },
-    { label: 'Research', text: 'I am checking how my research agent handles sources, confidence and model fallbacks.' },
-    { label: 'Market study', text: 'I used trade data and Singapore import guidance to examine a possible route for Tunisian olive oil.' },
+    { label: 'Research agent', text: 'I found a problem in the adjudication code that can overwrite the verdict and confidence with UNDETERMINED. The project page explains why that matters.' },
+    { label: 'Market study', text: 'I compared public trade data with Singapore import guidance to see what can and cannot be concluded about Tunisian olive oil.' },
+    { label: 'Study options', text: "I'm comparing English, business management, and international management before choosing what to study." },
   ],
-  closing: "I don't have a neat plan yet. I'm trying to learn useful skills, finish projects, and keep track of what changes my mind.",
-  footerLine: 'More notes as I go.',
+  closing: "I update this site when I have something worth recording. Some entries are more developed than others, and the page should make that clear.",
+  footerLine: 'Writing and project notes by Houcine.',
   about: {
     intro: [
-      "I'm Houcine. I'm deciding what to study next, with English, business management, and international management all under consideration. I haven't chosen a career, and I'd rather learn what each option actually leads to before acting like I have.",
-      "My interests tend to meet around business, negotiation, technology, and philosophy. I like taking an argument apart to see what it depends on, and I'm curious about what makes an idea work outside theory.",
-      "This is a personal site, not a résumé. Some pages are writing, some are project notes, and some are exercises I haven't tested yet. I'll update or remove things as my work and interests change."
+      "I'm Houcine. I'm deciding what to study next, with English, business management, and international management all under consideration. I haven't chosen a career yet.",
+      "I keep coming back to business decisions, negotiation, technology, and philosophy. The questions differ, but I like seeing what an argument or plan depends on and checking which parts have evidence behind them.",
+      "This is a personal learning site. It contains essays, software notes, and desk research. I do not present degrees, professional certifications, or a job history here, and the work should be judged by its sources and reasoning rather than a claimed title."
     ],
-    stage: "Right now I'm comparing study options and trying to build skills alongside that decision. I'm interested in work that could take me beyond one country, but I'm still figuring out what route makes sense.",
+    stage: "Right now I'm improving my writing, learning business fundamentals, and checking how an AI research program handles sources and uncertainty. The market-entry page is desk research, not a business I have launched.",
     questions: [
-      'Can an argument survive its strongest objection?',
+      'Which assumptions matter most when deciding whether a business idea is worth pursuing?',
       'What makes people trust an offer or agree to a deal?',
-      'How does a company decide whether another market is worth entering?',
-      'Which skills are genuinely useful in a first job?'
+      'What does public trade data show, and what does it leave unanswered?',
+      'How can a research program tell the difference between repeated claims and actual progress?'
     ],
     learning: [
-      'Writing and communicating more clearly in English.',
-      'The basics of business: finance, customers, operations, and costs.',
-      'How negotiation works in practice, not just in theory.',
-      'How to check sources and keep evidence separate from assumptions.',
-      'How to use AI tools without outsourcing my judgment to them.'
+      'Writing more clearly in English.',
+      'Business fundamentals: customers, costs, pricing, cash flow, and operations.',
+      'Negotiation and the practical side of working with people.',
+      'Source checking and keeping facts separate from estimates.',
+      'Using AI tools while remaining responsible for the conclusions.'
     ],
-    direction: "Eventually I'd like to build something of my own or do work where I can make decisions and be accountable for them. That's a direction, not a plan yet. For now, I need skills and real work to learn from."
+    direction: "I'd like to do work that combines analysis with practical decisions, perhaps across countries. I still need more study and real experience before claiming expertise in any of these areas."
   }
 };

@@ -81,3 +81,9 @@ html{background:var(--bg);background-image:radial-gradient(ellipse at 82% 0%,rgb
 .prose tr:last-child td{border-bottom:0}
 .prose .table-wrap:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
 @media(max-width:640px){.prose table{font-size:.82rem}.prose th,.prose td{padding:.6rem;min-width:7.5rem}}
+
+/* FAQ and site-policy sections added for direct, readable answers. */
+.faq-item{border-top:1px solid var(--ln);padding-top:.65rem;margin-top:1.5rem}
+.faq-item h2{font-size:1.25rem!important;line-height:1.35;margin:0 0 .6rem!important}
+.faq-item p{margin-bottom:1.1rem!important}
+.site-info .prose{max-width:54rem}

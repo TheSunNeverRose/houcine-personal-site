@@ -1,95 +1,58 @@
 # Houcine | Notes & Experiments
 
-A lightweight, dependency-free personal website with a dark editorial design, responsive layouts, Markdown writing and project pages, category filters, and client-side search. The public projects focus on the Ultimate Reality Researcher codebase and a sourced desk-research exercise on Tunisian olive oil in Singapore.
+A lightweight personal website for writing, project notes, and small research exercises. Current public work includes an AI-assisted research program on arguments about ultimate reality and a desk-research exercise on Tunisian olive oil in Singapore.
 
-The site separates what is documented from what remains unknown. The market-entry page cites public trade and regulatory sources; it does not claim buyer interviews, field research, or a validated business opportunity. The research-agent page records an implementation issue found during source inspection rather than presenting the project as more reliable than it is. Older negotiation and generic business-concept drafts are kept unpublished to avoid listing checklists as finished projects.
+The site identifies the difference between documented facts, estimates, questions, and results that have not been tested. It does not claim formal qualifications, offer professional advice, or present the market-entry exercise as a validated business opportunity.
 
 ## Requirements
 
 - Node.js 18 or newer
-- No package installation is needed; the site uses Node's built-in modules.
+- No package installation is needed. The build uses Node's built-in modules.
 
 ## Run locally
-
-From this directory:
 
 ```sh
 npm run dev
 ```
 
-Open <http://localhost:4321>. The preview server rebuilds the site when pages are requested. Stop it with `Ctrl+C`.
+Open <http://localhost:4321>. Stop the local server with `Ctrl+C`.
 
-## Build for publishing
+## Build
 
 ```sh
 npm run build
 ```
 
-The complete static website is written to `dist/`. Publish the **contents** of `dist/`, not the source directory, to a static hosting provider.
+The complete static site is written to `dist/`. The build generates the HTML pages, page-specific JSON-LD structured data, a sitemap, `robots.txt`, `llms.txt`, and an RSS feed at `feed.xml`.
 
-## Personalise the site
+## Content and site information
 
-Most homepage and About text is in `site.config.mjs`. Edit the values there to change:
+- `site.config.mjs` controls the site name, public URL, author description, intended audience, publishing schedule, free-access policy, newsletter status, submission status, homepage, and About page.
+- `content/writing/` contains writing entries in Markdown.
+- `content/projects/` contains project pages in Markdown.
+- `draft: true` keeps an entry out of the published site, search index, sitemap, RSS feed, and AI-readable index.
+- A project `status` can be `exploring`, `in-progress`, `experiment`, `completed`, or `archived`.
 
-- Name and site title
-- Hero headline and introduction
-- Areas of interest
-- Current focus
-- About-page introduction, questions, learning goals, and direction
-- Contact email and social links
-- Production URL and optional hosting sub-path
+Keep front matter fields `title`, `description`, and `date` on every entry. Use `updated` only when the page has materially changed. Do not add structured claims about credentials, products, paywalls, or business results unless they are true and visible on the page.
 
-The site currently uses the first name `Houcine`. Add a public email only if you want it visible. The GitHub footer link points to the Ultimate Reality Researcher repository; change it in `site.config.mjs` if you prefer another public profile.
+## Generated discovery files
 
-## Add a writing entry
+- `/sitemap.xml` lists the homepage, key pages, and published content.
+- `/robots.txt` allows ordinary crawling and explicitly permits `OAI-SearchBot`.
+- `/llms.txt` is a concise map of the site for tools that choose to read the proposed convention. It is not a ranking guarantee and should not be described as one.
+- `/feed.xml` is a free RSS feed for recent published writing. It is not an email newsletter.
+- JSON-LD identifies the author as a `Person`, the website as a `WebSite`, essays as `BlogPosting`, project pages as `CreativeWork` or `SoftwareSourceCode`, and the FAQ as an `FAQPage`. Markup is generated from visible content; it should stay in sync with the page.
 
-Create a Markdown file in `content/writing/`, for example `content/writing/my-new-note.md`:
+No `Product` schema is used because this site does not sell a product. The site does not currently have a newsletter, membership, paywall, paid tier, guest-post program, public contact email, or general submission form.
 
-```md
----
-title: A clear title
-description: A one-sentence summary.
-date: 2026-10-20
-category: Business
-tags: [strategy, learning]
-featured: false
----
+## Deploy to the existing Cloudflare Worker
 
-Your article in Markdown.
+The public URL is `https://houcine-notes.hssinmbarek6.workers.dev`. `wrangler.jsonc` names the Worker `houcine-notes` and serves the generated `dist/` directory as static assets.
 
-## A section
+To enable automatic deployments from GitHub, open Cloudflare Dashboard → **Workers & Pages** → select the existing **houcine-notes** Worker → **Settings** → **Builds** → **Connect**. Connect the repository `TheSunNeverRose/houcine-personal-site` and use `main` as the production branch. Set the build command to `npm run build` and the deploy command to `npx wrangler deploy`. Keep the root directory blank.
 
-Write your thoughts here. Add links and a list when useful.
-```
-
-The filename becomes the URL slug. Use lowercase letters, numbers, and hyphens. Supported Markdown includes paragraphs, `##`/`###` headings, lists, blockquotes, tables, links, images, inline emphasis, and fenced code blocks. Keep research sources and important qualifications in the article itself.
-
-Add `draft: true` to keep a draft out of the public site, search index, and sitemap. Remove that flag when it is ready to publish.
-
-## Add a project
-
-Create a Markdown file in `content/projects/`. Use the same fields as an article, plus a `status` value:
-
-- `exploring`
-- `in-progress`
-- `experiment`
-- `completed`
-- `archived`
-
-Useful optional headings include `The question`, `Why it matters`, `Hypothesis`, `Research and method`, `Process`, `Results`, `Limitations`, `Lessons learned`, `Next steps`, and `Sources`. Sections that are not needed can be omitted. Label estimates and hypotheses as such; don't present a plan as a result.
-
-## Domain and deployment
-
-1. Choose a static host such as GitHub Pages, Cloudflare Pages, or Netlify.
-2. Set `url` in `site.config.mjs` to the final public URL. This enables canonical URLs and `sitemap.xml`.
-3. Set `base` only if the site is hosted below a path, such as `/repository-name` on a GitHub Pages project site. Leave it empty for a root domain or root-level site.
-4. Run `npm run build` and publish the generated `dist/` directory.
-
-For Cloudflare Pages or Netlify, the build command is `npm run build` and the output directory is `dist`. A GitHub Pages setup needs a workflow that installs Node and runs the build before publishing `dist/`.
+A GitHub push triggers a Cloudflare deployment only after this Git integration is connected. After the first build, check the deployment status and visit `/faq/`, `/feed.xml`, and `/llms.txt` on the live URL to confirm that the new version is being served.
 
 ## Notes
 
-- The website has no database, account system, analytics, advertisements, or third-party runtime dependencies.
-- Search runs locally against the generated content index.
-- No contact form is included; an email link appears only when a real email address is configured.
-- Canonical URLs and the sitemap are intentionally omitted until the production URL is known.
+The site has no database, login system, analytics, or third-party runtime dependencies. Search runs against a generated local content index. The public email field is intentionally blank. The footer links to the author's GitHub profile; the Ultimate Reality Researcher project links directly to its own repository from the project page.
