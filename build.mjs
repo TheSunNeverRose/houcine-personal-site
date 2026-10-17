@@ -159,14 +159,19 @@ function schemaScript({ title, desc, path: p, pageType = 'WebPage', mainEntity, 
   return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')}</script>`;
 }
 function layout({ title, desc, path: p, body, type = 'website', pageType = 'WebPage', mainEntity, extraSchema = [] }) {
-  const t = title ? `${title} | ${cfg.title}` : cfg.title;
-  const rawDesc = desc || cfg.tagline;
-  const d = esc(rawDesc);
+  const rawTitle = title ? `${title} | ${cfg.name}` : 'Houcine | Business, AI, Philosophy and Research Notes';
+  // Keep titles distinctive without appending a long site name to already-long article titles.
+  const t = rawTitle.length > 60 ? (title && title.length <= 60 ? title : rawTitle.slice(0, 57).trimEnd() + '…') : rawTitle;
+  const rawDesc = (desc || cfg.tagline).replace(/\\s+/g, ' ').trim();
+  const metaDesc = rawDesc.length > 155 ? rawDesc.slice(0, 152).replace(/\\s+\\S*$/, '') + '…' : rawDesc;
+  const d = esc(metaDesc);
   const L = links();
   const canonical = U ? `${U}${B}${p}` : '';
   const canonicalTag = canonical ? `<link rel="canonical" href="${esc(canonical)}"><meta property="og:url" content="${esc(canonical)}">` : '';
-  const schemas = schemaScript({ title: t, desc: rawDesc, path: p, pageType, mainEntity, extraSchema });
-  return `<!doctype html><html lang="${cfg.lang || 'en'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t)}</title><meta name="description" content="${d}"><meta name="robots" content="index,follow,max-image-preview:large">${canonicalTag}<meta property="og:site_name" content="${esc(cfg.title)}"><meta property="og:title" content="${esc(t)}"><meta property="og:description" content="${d}"><meta property="og:type" content="${type}"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#10100f"><link rel="icon" type="image/svg+xml" href="${H('/favicon.svg?v=2')}"><link rel="alternate" type="application/rss+xml" title="${esc(cfg.title)} RSS" href="${H('/feed.xml')}"><link rel="stylesheet" href="${H('/style.css')}"><script defer src="${H('/app.js')}"></script>${schemas}</head><body><a class="skip" href="#main">Skip to content</a><header class="top"><div class="in"><a class="mark" href="${H('/')}">${esc(cfg.name)}</a><button class="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav" aria-label="Primary">${nav.map(([u, n]) => `<a href="${H(u)}"${p === u || (u !== '/' && p.startsWith(u)) ? ' aria-current="page"' : ''}>${n}</a>`).join('')}</nav></div></header><main id="main">${body}</main><footer><div class="in"><a class="mark" href="${H('/')}">${esc(cfg.name)}</a><nav aria-label="Footer">${nav.filter(([u]) => u !== '/search/').map(([u, n]) => `<a href="${H(u)}">${n}</a>`).join('')}<a href="${H('/feed.xml')}">RSS</a>${L.join('')}</nav><p>&copy; ${new Date().getFullYear()} ${esc(cfg.name)}. ${esc(cfg.footerLine)}</p></div></footer></body></html>`;
+  const schemas = schemaScript({ title: t, desc: metaDesc, path: p, pageType, mainEntity, extraSchema });
+  const robots = ['/search/', '/404/'].includes(p) ? 'noindex,follow' : 'index,follow,max-image-preview:large';
+  const ogImage = U ? `${U}${B}/og-cover.png` : `${B}/og-cover.png`;
+  return `<!doctype html><html lang="${cfg.lang || 'en'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(t)}</title><meta name="description" content="${d}"><meta name="robots" content="${robots}">${canonicalTag}<meta property="og:site_name" content="${esc(cfg.title)}"><meta property="og:title" content="${esc(t)}"><meta property="og:description" content="${d}"><meta property="og:type" content="${type}"><meta property="og:locale" content="en_US"><meta property="og:image" content="${esc(ogImage)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${esc(ogImage)}"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#10100f"><link rel="icon" type="image/svg+xml" href="${H('/favicon.svg?v=2')}"><link rel="alternate" type="application/rss+xml" title="${esc(cfg.title)} RSS" href="${H('/feed.xml')}"><link rel="stylesheet" href="${H('/style.css')}"><script defer src="${H('/app.js')}"></script>${schemas}</head><body><a class="skip" href="#main">Skip to content</a><header class="top"><div class="in"><a class="mark" href="${H('/')}">${esc(cfg.name)}</a><button class="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav" aria-label="Primary">${nav.map(([u, n]) => `<a href="${H(u)}"${p === u || (u !== '/' && p.startsWith(u)) ? ' aria-current="page"' : ''}>${n}</a>`).join('')}</nav></div></header><main id="main">${body}</main><footer><div class="in"><a class="mark" href="${H('/')}">${esc(cfg.name)}</a><nav aria-label="Footer">${nav.filter(([u]) => u !== '/search/').map(([u, n]) => `<a href="${H(u)}">${n}</a>`).join('')}<a href="${H('/feed.xml')}">RSS</a>${L.join('')}</nav><p>&copy; ${new Date().getFullYear()} ${esc(cfg.name)}. ${esc(cfg.footerLine)}</p></div></footer></body></html>`;
 }
 
 const row = (x, extra) => `<li class="row" data-cat="${esc(x.category)}"><a href="${H(x.url)}"><span class="meta mono">${date(x.date)}</span><div><h3>${esc(x.title)}</h3><p>${esc(x.description)}</p><span class="meta">${[x.category, extra].filter(Boolean).map(esc).join('<i></i>')}${x.sample ? '<span class="tag sample">Demonstration</span>' : ''}</span></div></a></li>`;
@@ -246,10 +251,18 @@ function build() {
 
   put('search/index.html', layout({ title: 'Search', desc: 'Search the writing and projects.', path: '/search/', body: `<section class="in sec first"><p class="label">Search</p><h1>Find something</h1><form role="search" data-search data-index="${H('/search.json')}"><label for="q" class="meta">Search writing and projects</label><div class="sf"><input id="q" type="search" autocomplete="off"><button type="button" id="clear" class="btn">Clear</button></div></form><p id="st" class="meta" role="status"></p><ul id="res" class="list"></ul><noscript><p class="empty">Search needs JavaScript. Browse the <a href="${H('/writing/')}">writing</a> or <a href="${H('/projects/')}">projects</a> instead.</p></noscript></section>` }));
   put('search.json', JSON.stringify([...A, ...P].map(x => ({ t: x.title, d: x.description, u: H(x.url), k: x.kind === 'writing' ? 'Writing' : 'Project', x: x.body.replace(/[#*`>\[\]()_-]/g, ' ').slice(0, 4000) }))));
-  put('404.html', layout({ title: 'Not found', path: '/404/', body: `<section class="in sec first"><h1>Page not found</h1><p class="lede">That address does not exist here. <a href="${H('/')}">Go to the homepage</a>.</p></section>` }));
+  put('404.html', layout({ title: 'Not found', desc: 'The requested page could not be found. Return to Houcine’s homepage or browse the published writing and projects.', path: '/404/', body: `<section class="in sec first"><h1>Page not found</h1><p class="lede">That address does not exist here. <a href="${H('/')}">Go to the homepage</a>.</p></section>` }));
 
   const sitemapPaths = ['/', '/writing/', '/projects/', '/about/', '/faq/', ...A.map(x => x.url), ...P.map(x => x.url)];
-  put('robots.txt', `User-agent: *\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n${U ? `\nSitemap: ${U}${B}/sitemap.xml\n` : ''}`);
+  const crawlAgents = [
+    'GPTBot', 'ChatGPT-User', 'OAI-SearchBot', 'Google-Extended',
+    'ClaudeBot', 'anthropic-ai', 'Claude-Web', 'PerplexityBot',
+    'Perplexity-User', 'CCBot', 'Applebot-Extended', 'Bytespider',
+    'Amazonbot', 'Meta-ExternalAgent', 'MistralAI-User'
+  ];
+  // Give each named crawler an explicit allow-all group so audits do not mistake
+  // a generic group or an absent named group for a partial restriction.
+  put('robots.txt', `User-agent: *\nAllow: /\n\n${crawlAgents.map(agent => `User-agent: ${agent}\nAllow: /`).join('\n\n')}\n${U ? `\nSitemap: ${U}${B}/sitemap.xml\n` : ''}`);
   if (U) {
     const dateMap = new Map([...A, ...P].map(x => [x.url, date(x.updated || x.date)]));
     put('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemapPaths.map(p => `<url><loc>${xml(`${U}${B}${p}`)}</loc>${dateMap.has(p) ? `<lastmod>${dateMap.get(p)}</lastmod>` : ''}</url>`).join('')}</urlset>`);
